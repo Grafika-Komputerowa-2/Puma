@@ -11,6 +11,7 @@
 #include "Camera.h"
 #include "VAO.h"
 #include "Room.h"
+#include "Robot.h"
 
 unsigned int width = 1600;
 unsigned int height = 1024;
@@ -26,6 +27,7 @@ int main()
 		return -1;
 
 	Room room( 30, 10, 30);
+	Robot robot{};
 	////////////////////////////////
 	// Main while loop
 	while (!glfwWindowShouldClose(window))
@@ -46,7 +48,7 @@ int main()
 		camera.Inputs(window);
 		camera.ActiveInterferes();
 		room.Draw(window, camera);
-
+		robot.Draw(window, camera);
 		
 
 		ImGui::Render();
