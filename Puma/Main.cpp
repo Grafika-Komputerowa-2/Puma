@@ -15,7 +15,7 @@
 unsigned int width = 1600;
 unsigned int height = 1024;
 
-Camera camera(width, height, glm::vec3(0.0f, 1.0f, -2.0f));
+Camera camera(width, height, glm::vec3(0.0f, 0.0f, -5.0f));
 GLFWwindow* Init();
 void ResizeCallBack(GLFWwindow* window, int w, int h);
 
@@ -25,7 +25,7 @@ int main()
 	if (window == NULL)
 		return -1;
 
-	Room room{ 1 };
+	Room room{ 30, 25 };
 	////////////////////////////////
 	// Main while loop
 	while (!glfwWindowShouldClose(window))
