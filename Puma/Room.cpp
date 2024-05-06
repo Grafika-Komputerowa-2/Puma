@@ -1,10 +1,11 @@
 #include "Room.h"
 #include "EBO.h"
 
-Room::Room(float width, float height)
+Room::Room(float width, float height, float deep)
 {
-	float halfWidth = width * 0.5f;
-	float halfHeight = height * 0.5f;
+	const float halfWidth = width * 0.5f;
+	const float halfHeight = height * 0.5f;
+	const float halfDeep = deep * 0.5f;
 
 	std::vector<float> wallVs = { 
 		-1, -1, 0,
@@ -32,37 +33,37 @@ Room::Room(float width, float height)
 
 
 	glm::mat4 trans = glm::mat4(1.0f);
-	trans = glm::translate(trans, glm::vec3(0.0, 0.0, -halfHeight));
+	trans = glm::translate(trans, glm::vec3(0.0, 0.0, -halfDeep));
 	trans = glm::scale(trans, glm::vec3(halfWidth, halfHeight, 1));
 	walls_modelMtx[0] = trans;
 
 	trans = glm::mat4(1.0f);
-	trans = glm::translate(trans, glm::vec3(0.0, 0.0, +halfHeight));
+	trans = glm::translate(trans, glm::vec3(0.0, 0.0, +halfDeep));
 	trans = glm::scale(trans, glm::vec3(halfWidth, halfHeight, 1));
 	walls_modelMtx[1] = trans;
 
 	trans = glm::mat4(1.0f);
 	trans = glm::translate(trans, glm::vec3(0.0, -halfHeight, 0.0));
 	trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(1.0, 0.0, 0.0));
-	trans = glm::scale(trans, glm::vec3(halfWidth, halfHeight, 1));
+	trans = glm::scale(trans, glm::vec3(halfWidth, halfDeep, 1));
 	walls_modelMtx[2] = trans;
 
 	trans = glm::mat4(1.0f);
 	trans = glm::translate(trans, glm::vec3(0.0, +halfHeight, 0.0));
 	trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(1.0, 0.0, 0.0));
-	trans = glm::scale(trans, glm::vec3(halfWidth, halfHeight, 1));
+	trans = glm::scale(trans, glm::vec3(halfWidth, halfDeep, 1));
 	walls_modelMtx[3] = trans;
 
 	trans = glm::mat4(1.0f);
 	trans = glm::translate(trans, glm::vec3(-halfWidth, 0.0, 0.0));
 	trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0, 1.0, 0.0));
-	trans = glm::scale(trans, glm::vec3(halfHeight, halfHeight, 1));
+	trans = glm::scale(trans, glm::vec3(halfDeep, halfHeight, 1));
 	walls_modelMtx[4] = trans;
 
 	trans = glm::mat4(1.0f);
 	trans = glm::translate(trans, glm::vec3(+halfWidth, 0.0, 0.0));
 	trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0, 1.0, 0.0));
-	trans = glm::scale(trans, glm::vec3(halfHeight, halfHeight, 1));
+	trans = glm::scale(trans, glm::vec3(halfDeep, halfHeight, 1));
 	walls_modelMtx[5] = trans;
 }
 

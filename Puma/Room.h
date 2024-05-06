@@ -15,7 +15,7 @@ class Room: public Mesh
 		{0, 0, 0.5, 1}
 	};
 public:
-	Room(float wdith, float height);
+	Room(float wdith, float height, float deep);
 	void virtual Draw(GLFWwindow* window, const Camera& camera);
 };
 

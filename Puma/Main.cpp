@@ -25,7 +25,7 @@ int main()
 	if (window == NULL)
 		return -1;
 
-	Room room{ 30, 25 };
+	Room room( 30, 10, 30);
 	////////////////////////////////
 	// Main while loop
 	while (!glfwWindowShouldClose(window))
@@ -78,7 +78,7 @@ GLFWwindow* Init() {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	GLFWwindow* window = glfwCreateWindow(width, height, "MKMG_lab_1", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(width, height, "Puma", NULL, NULL);
 	if (window == NULL)
 	{
 		std::cout << "Failed to create GLFW window" << std::endl;
