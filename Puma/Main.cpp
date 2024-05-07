@@ -26,7 +26,25 @@ int main()
 	if (window == NULL)
 		return -1;
 
-	Room room( 30, 10, 30);
+	float width = 30;
+	float height = 10;
+	float deep = 30;
+
+	Room room( width, height, deep);
+
+	const int lightCount = 1;
+	Light lights[lightCount];
+
+	float startPos_y = height * 0.5f - 1.0f;
+
+	Light light;
+	light.position = glm::vec3(0.0f, startPos_y, 0.0f);
+	light.ambient = glm::vec3(0.1f, 0.1f, 0.1f);
+	light.diffuse = glm::vec3(0.5f, 0.5f, 0.5f);
+	light.specular = glm::vec3(0.4f, 0.4f, 0.4f);
+
+	lights[0] = light;
+
 	////////////////////////////////
 	// Main while loop
 	while (!glfwWindowShouldClose(window))
@@ -46,7 +64,8 @@ int main()
 
 		camera.Inputs(window);
 		camera.ActiveInterferes();
-		room.Draw(window, camera);
+
+		room.Draw(window, camera, lights, lightCount);
 		
 
 		ImGui::Render();
