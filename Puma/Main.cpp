@@ -11,6 +11,7 @@
 #include "Camera.h"
 #include "VAO.h"
 #include "Room.h"
+#include "Robot.h"
 
 unsigned int width = 1600;
 unsigned int height = 1024;
@@ -46,7 +47,6 @@ int main()
 		camera.Inputs(window);
 		camera.ActiveInterferes();
 		room.Draw(window, camera);
-
 		
 
 		ImGui::Render();

@@ -168,6 +168,7 @@
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="QuaternionRotationImGui.cpp" />
+    <ClCompile Include="Robot.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="Rotation.cpp" />
     <ClCompile Include="Scale.cpp" />
@@ -175,6 +176,7 @@
     <ClCompile Include="Transpose.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AszkalMeshReader.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Constants.h" />
     <ClInclude Include="EBO.h" />
@@ -188,11 +190,14 @@
     <ClInclude Include="Libraries\include\ImGui\imstb_rectpack.h" />
     <ClInclude Include="Libraries\include\ImGui\imstb_textedit.h" />
     <ClInclude Include="Libraries\include\ImGui\imstb_truetype.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="MathOperations.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="OpenGLHelper.h" />
     <ClInclude Include="Quaternion.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="RobotsPartInfo.h" />
+    <ClInclude Include="Robot.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="Rotation.h" />
     <ClInclude Include="RotationImGui.h" />
@@ -212,9 +217,28 @@
     <None Include="default.frag" />
     <None Include="default.vert" />
     <None Include="simple_vert.glsl" />
+    <None Include="vertexAndNormals_frag.glsl" />
+    <None Include="vertexAndNormals_vert.glsl" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Puma.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="puma-mesh\mesh1.txt">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</DeploymentContent>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</DeploymentContent>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</DeploymentContent>
+    </Text>
+    <Text Include="puma-mesh\mesh2.txt" />
+    <Text Include="puma-mesh\mesh3.txt" />
+    <Text Include="puma-mesh\mesh4.txt" />
+    <Text Include="puma-mesh\mesh5.txt" />
+    <Text Include="puma-mesh\mesh6.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

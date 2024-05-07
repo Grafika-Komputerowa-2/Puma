@@ -52,6 +52,12 @@
     <Filter Include="Resource Files\Shaders\lightings">
       <UniqueIdentifier>{d4abce90-2e8d-4a7f-b7b9-87b79a23132e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Mesh">
+      <UniqueIdentifier>{3000889d-a33c-4f2b-8007-87717bf0ae3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders\VertexAndNormal">
+      <UniqueIdentifier>{2ec7861d-9be2-4f9d-94e5-acfd8695efb2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="glad.c">
@@ -102,11 +108,14 @@
     <ClCompile Include="QuaternionRotationImGui.cpp">
       <Filter>Source Files\Transformations</Filter>
     </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files\ScensObjects</Filter>
-    </ClCompile>
     <ClCompile Include="Room.cpp">
       <Filter>Source Files\ScensObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Robot.cpp">
+      <Filter>Source Files\ScensObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -191,10 +200,22 @@
     <ClInclude Include="QuaternionRotationImGui.h">
       <Filter>Header Files\Transformations</Filter>
     </ClInclude>
-    <ClInclude Include="Mesh.h">
+    <ClInclude Include="Room.h">
       <Filter>Header Files\ScensObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Room.h">
+    <ClInclude Include="Robot.h">
+      <Filter>Header Files\ScensObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="AszkalMeshReader.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="RobotsPartInfo.h">
+      <Filter>Header Files\ScensObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
       <Filter>Header Files\ScensObjects</Filter>
     </ClInclude>
   </ItemGroup>
@@ -217,10 +238,36 @@
     <None Include="phong_vert.glsl">
       <Filter>Resource Files\Shaders\lightings</Filter>
     </None>
+    <None Include="vertexAndNormals_vert.glsl">
+      <Filter>Resource Files\Shaders\VertexAndNormal</Filter>
+    </None>
+    <None Include="vertexAndNormals_frag.glsl">
+      <Filter>Resource Files\Shaders\VertexAndNormal</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Puma.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="puma-mesh\mesh6.txt">
+      <Filter>Resource Files\Mesh</Filter>
+    </Text>
+    <Text Include="puma-mesh\mesh5.txt">
+      <Filter>Resource Files\Mesh</Filter>
+    </Text>
+    <Text Include="puma-mesh\mesh4.txt">
+      <Filter>Resource Files\Mesh</Filter>
+    </Text>
+    <Text Include="puma-mesh\mesh2.txt">
+      <Filter>Resource Files\Mesh</Filter>
+    </Text>
+    <Text Include="puma-mesh\mesh3.txt">
+      <Filter>Resource Files\Mesh</Filter>
+    </Text>
+    <Text Include="puma-mesh\mesh1.txt">
+      <Filter>Resource Files\Mesh</Filter>
+    </Text>
   </ItemGroup>
 </Project>
