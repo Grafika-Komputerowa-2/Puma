@@ -1,6 +1,9 @@
 #pragma once
 #include "Mesh.h"
 #include "VAO.h"
+#include "Light.h"
+#include "Robot.h"
+
 class Room: public Mesh
 {
 	Shader shader_wall;
@@ -14,6 +17,7 @@ class Room: public Mesh
 		{0.5, 0, 0, 1},
 		{0, 0, 0.5, 1}
 	};
+	Robot robot;
 public:
 	Room(float wdith, float height, float deep);
 	void virtual Draw(GLFWwindow* window, const Camera& camera);

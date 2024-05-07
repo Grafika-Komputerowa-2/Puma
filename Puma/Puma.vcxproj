@@ -190,6 +190,7 @@
     <ClInclude Include="Libraries\include\ImGui\imstb_rectpack.h" />
     <ClInclude Include="Libraries\include\ImGui\imstb_textedit.h" />
     <ClInclude Include="Libraries\include\ImGui\imstb_truetype.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="MathOperations.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="OpenGLHelper.h" />

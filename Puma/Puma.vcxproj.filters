@@ -108,14 +108,14 @@
     <ClCompile Include="QuaternionRotationImGui.cpp">
       <Filter>Source Files\Transformations</Filter>
     </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files\ScensObjects</Filter>
-    </ClCompile>
     <ClCompile Include="Room.cpp">
       <Filter>Source Files\ScensObjects</Filter>
     </ClCompile>
     <ClCompile Include="Robot.cpp">
       <Filter>Source Files\ScensObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -200,9 +200,6 @@
     <ClInclude Include="QuaternionRotationImGui.h">
       <Filter>Header Files\Transformations</Filter>
     </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Header Files\ScensObjects</Filter>
-    </ClInclude>
     <ClInclude Include="Room.h">
       <Filter>Header Files\ScensObjects</Filter>
     </ClInclude>
@@ -213,6 +210,12 @@
       <Filter>Header Files\Helper</Filter>
     </ClInclude>
     <ClInclude Include="RobotsPartInfo.h">
+      <Filter>Header Files\ScensObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
       <Filter>Header Files\ScensObjects</Filter>
     </ClInclude>
   </ItemGroup>

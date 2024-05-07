@@ -1,6 +1,6 @@
 #include "Robot.h"
 
-void Robot::Draw(GLFWwindow* window, const Camera& camera)
+void Robot::Draw(GLFWwindow* window, const Camera& camera, const Light* lights, int lightsCount)
 {
 	trianglesShader.Activate();
 	for (int i = 0; i < 6; i++) {
@@ -8,8 +8,9 @@ void Robot::Draw(GLFWwindow* window, const Camera& camera)
 		{
 			glUniformMatrix4fv(glGetUniformLocation(trianglesShader.ID, "MODEL_MATRIX"),
 				1, GL_FALSE, glm::value_ptr(partsModel_Mtx[i]));
-			glUniform4f(glGetUniformLocation(trianglesShader.ID, "COLOR"), partsColors[i].x, partsColors[i].y, partsColors[i].z, partsColors[i].w);
 			camera.SaveMatrixToShader(trianglesShader.ID);
+
+			OpenGLHelper::loadLightUniform(trianglesShader.ID, lights, lightsCount);
 
 			int n = partsInfo[i].triangles.size();
 			glDrawElements(GL_TRIANGLES, n, GL_UNSIGNED_INT, 0);
@@ -23,7 +24,6 @@ void Robot::Draw(GLFWwindow* window, const Camera& camera)
 		{
 			glUniformMatrix4fv(glGetUniformLocation(edgesShader.ID, "MODEL_MATRIX"),
 				1, GL_FALSE, glm::value_ptr(partsModel_Mtx[i]));
-			glUniform4f(glGetUniformLocation(edgesShader.ID, "COLOR"), 0, 0, 0, 1);
 			camera.SaveMatrixToShader(edgesShader.ID);
 
 			int n = partsInfo[i].edges.size() / 2;
@@ -50,7 +50,7 @@ Robot::Robot()
 
 		//////////////// triangle ///////////////////
 		{
-			std::vector<float> vertexAndNormals;
+			std::vector<float> vertexNormalsColors;
 			int n = partsInfo[i].vertexId_And_normals.size() / partsInfo[i].vertexId_And_normals_numberOfFloatsInDataUnit;
 
 			for (int j = 0; j < n; j++) {
@@ -58,20 +58,22 @@ Robot::Robot()
 					j, 0, partsInfo[i].vertexId_And_normals_numberOfFloatsInDataUnit);
 				glm::vec3 vertexPos = OpenGLHelper::TakeCopyOfVec3(partsInfo[i].vertexPositions,
 					vertexPosId, 0, partsInfo[i].vertexPositions_numberOfFloatsInDataUnit);
-				OpenGLHelper::AddVecToVector(vertexAndNormals, vertexPos);
+				OpenGLHelper::AddVecToVector(vertexNormalsColors, vertexPos);
 
 				glm::vec3 normal = OpenGLHelper::TakeCopyOfVec3(partsInfo[i].vertexId_And_normals,
 					j, 1, partsInfo[i].vertexId_And_normals_numberOfFloatsInDataUnit);
-				OpenGLHelper::AddVecToVector(vertexAndNormals, normal);
+				OpenGLHelper::AddVecToVector(vertexNormalsColors, normal);
 
+				OpenGLHelper::AddVecToVector(vertexNormalsColors, robotColor);
 			}
 
 			partsVAO_triangles[i].Bind();
-			VBO vbo(vertexAndNormals, GL_STATIC_DRAW);
+			VBO vbo(vertexNormalsColors, GL_STATIC_DRAW);
 			EBO ebo(partsInfo[i].triangles);
 
-			partsVAO_triangles[i].LinkAttrib(0, 3, GL_FLOAT, false, 6 * sizeof(float), 0); // position
-			partsVAO_triangles[i].LinkAttrib(1, 3, GL_FLOAT, false, 6 * sizeof(float), (void*)(3 * sizeof(float))); // normals
+			partsVAO_triangles[i].LinkAttrib(0, 3, GL_FLOAT, false, 9 * sizeof(float), 0); // position
+			partsVAO_triangles[i].LinkAttrib(1, 3, GL_FLOAT, false, 9 * sizeof(float), (void*)(3 * sizeof(float))); // normals
+			partsVAO_triangles[i].LinkAttrib(2, 3, GL_FLOAT, false, 9 * sizeof(float), (void*)(6 * sizeof(float))); // color
 
 			partsVAO_triangles[i].Unbind(); vbo.Unbind(); ebo.Unbind();
 		}
@@ -102,6 +104,6 @@ Robot::Robot()
 		}
 	}
 
-	trianglesShader = { "vertexAndNormals_vert.glsl", "vertexAndNormals_frag.glsl" };
+	trianglesShader = { "phong_vert.glsl", "phong_frag.glsl" };
 	edgesShader = { "simple_vert.glsl", "simple_frag.glsl" };
 }

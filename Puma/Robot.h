@@ -5,6 +5,7 @@
 #include "VAO.h"
 #include "VBO.h"
 #include "EBO.h"
+#include "Light.h"
 
 class Robot:public Mesh
 {
@@ -20,16 +21,9 @@ class Robot:public Mesh
 	Shader trianglesShader;
 	Shader edgesShader;
 
-	glm::vec4 partsColors[6] = {
-		{0.85, 0.85, 0.85, 1},
-		{0.85, 0.85, 0.85, 1},
-		{0.85, 0.85, 0.85, 1},
-		{0.85, 0.85, 0.85, 1},
-		{0.85, 0.85, 0.85, 1},
-		{0.85, 0.85, 0.85, 1}
-	};
+	glm::vec3 robotColor = { 0.85, 0.85, 0.85 };
 public:
-	void virtual Draw(GLFWwindow* window, const Camera& camera);
+	void virtual Draw(GLFWwindow* window, const Camera& camera, const Light* lights, int lightsCount);
 	Robot();
 };
 
