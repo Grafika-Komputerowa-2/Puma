@@ -206,8 +206,6 @@
     <ClInclude Include="VBO.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="phong_frag.glsl" />
-    <None Include="phong_vert.glsl" />
     <None Include="simple_frag.glsl" />
     <None Include="default.frag" />
     <None Include="default.vert" />
