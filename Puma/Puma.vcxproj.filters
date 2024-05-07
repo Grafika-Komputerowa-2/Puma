@@ -49,6 +49,9 @@
     <Filter Include="Header Files\ScensObjects">
       <UniqueIdentifier>{da082a49-dd44-44b6-9507-bccd1bc23733}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Shaders\lightings">
+      <UniqueIdentifier>{d4abce90-2e8d-4a7f-b7b9-87b79a23132e}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Resource Files\Mesh">
       <UniqueIdentifier>{3000889d-a33c-4f2b-8007-87717bf0ae3b}</UniqueIdentifier>
     </Filter>
@@ -225,6 +228,12 @@
     </None>
     <None Include="simple_frag.glsl">
       <Filter>Resource Files\Shaders\simple</Filter>
+    </None>
+    <None Include="phong_frag.glsl">
+      <Filter>Resource Files\Shaders\lightings</Filter>
+    </None>
+    <None Include="phong_vert.glsl">
+      <Filter>Resource Files\Shaders\lightings</Filter>
     </None>
     <None Include="vertexAndNormals_vert.glsl">
       <Filter>Resource Files\Shaders\VertexAndNormal</Filter>
