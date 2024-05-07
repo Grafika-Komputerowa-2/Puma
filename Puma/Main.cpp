@@ -47,7 +47,7 @@ int main()
 		camera.Inputs(window);
 		camera.ActiveInterferes();
 		room.Draw(window, camera);
-		
+		room.UserInterfers();
 
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

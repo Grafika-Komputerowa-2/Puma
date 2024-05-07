@@ -114,8 +114,11 @@
     <ClCompile Include="Robot.cpp">
       <Filter>Source Files\ScensObjects</Filter>
     </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Mirror.cpp">
+      <Filter>Source Files\ScensObjects</Filter>
+    </ClCompile>
+    <ClCompile Include="Cylinder.cpp">
+      <Filter>Source Files\ScensObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -212,10 +215,16 @@
     <ClInclude Include="RobotsPartInfo.h">
       <Filter>Header Files\ScensObjects</Filter>
     </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Light.h">
+      <Filter>Header Files\ScensObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Parametryzatrons.h">
+      <Filter>Header Files\Helper</Filter>
+    </ClInclude>
+    <ClInclude Include="Mirror.h">
+      <Filter>Header Files\ScensObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="Cylinder.h">
       <Filter>Header Files\ScensObjects</Filter>
     </ClInclude>
   </ItemGroup>

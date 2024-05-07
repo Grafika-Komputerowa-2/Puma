@@ -156,6 +156,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Cylinder.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Libraries\include\ImGui\imgui.cpp" />
     <ClCompile Include="Libraries\include\ImGui\imgui_draw.cpp" />
@@ -165,7 +166,7 @@
     <ClCompile Include="Libraries\include\ImGui\imgui_tables.cpp" />
     <ClCompile Include="Libraries\include\ImGui\imgui_widgets.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Mirror.cpp" />
     <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="QuaternionRotationImGui.cpp" />
     <ClCompile Include="Robot.cpp" />
@@ -179,6 +180,7 @@
     <ClInclude Include="AszkalMeshReader.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Constants.h" />
+    <ClInclude Include="Cylinder.h" />
     <ClInclude Include="EBO.h" />
     <ClInclude Include="Libraries\include\ImGui\imconfig.h" />
     <ClInclude Include="Libraries\include\ImGui\imgui.h" />
@@ -192,8 +194,9 @@
     <ClInclude Include="Libraries\include\ImGui\imstb_truetype.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="MathOperations.h" />
-    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Mirror.h" />
     <ClInclude Include="OpenGLHelper.h" />
+    <ClInclude Include="Parametryzatrons.h" />
     <ClInclude Include="Quaternion.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="RobotsPartInfo.h" />
