@@ -31,37 +31,43 @@ Room::Room(float width, float height, float deep)
 
 	shader_wall = { "simple_vert.glsl", "simple_frag.glsl" };
 
-
+	float startPos_y = halfHeight - 1;
 	glm::mat4 trans = glm::mat4(1.0f);
 	trans = glm::translate(trans, glm::vec3(0.0, 0.0, -halfDeep));
+	trans = glm::translate(trans, glm::vec3(0.0, startPos_y, 0.0));
 	trans = glm::scale(trans, glm::vec3(halfWidth, halfHeight, 1));
 	walls_modelMtx[0] = trans;
 
 	trans = glm::mat4(1.0f);
 	trans = glm::translate(trans, glm::vec3(0.0, 0.0, +halfDeep));
+	trans = glm::translate(trans, glm::vec3(0.0, startPos_y, 0.0));
 	trans = glm::scale(trans, glm::vec3(halfWidth, halfHeight, 1));
 	walls_modelMtx[1] = trans;
 
 	trans = glm::mat4(1.0f);
 	trans = glm::translate(trans, glm::vec3(0.0, -halfHeight, 0.0));
+	trans = glm::translate(trans, glm::vec3(0.0, startPos_y, 0.0));
 	trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(1.0, 0.0, 0.0));
 	trans = glm::scale(trans, glm::vec3(halfWidth, halfDeep, 1));
 	walls_modelMtx[2] = trans;
 
 	trans = glm::mat4(1.0f);
 	trans = glm::translate(trans, glm::vec3(0.0, +halfHeight, 0.0));
+	trans = glm::translate(trans, glm::vec3(0.0, startPos_y, 0.0));
 	trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(1.0, 0.0, 0.0));
 	trans = glm::scale(trans, glm::vec3(halfWidth, halfDeep, 1));
 	walls_modelMtx[3] = trans;
 
 	trans = glm::mat4(1.0f);
 	trans = glm::translate(trans, glm::vec3(-halfWidth, 0.0, 0.0));
+	trans = glm::translate(trans, glm::vec3(0.0, startPos_y, 0.0));
 	trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0, 1.0, 0.0));
 	trans = glm::scale(trans, glm::vec3(halfDeep, halfHeight, 1));
 	walls_modelMtx[4] = trans;
 
 	trans = glm::mat4(1.0f);
 	trans = glm::translate(trans, glm::vec3(+halfWidth, 0.0, 0.0));
+	trans = glm::translate(trans, glm::vec3(0.0, startPos_y, 0.0));
 	trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0, 1.0, 0.0));
 	trans = glm::scale(trans, glm::vec3(halfDeep, halfHeight, 1));
 	walls_modelMtx[5] = trans;

@@ -21,12 +21,12 @@ class Robot:public Mesh
 	Shader edgesShader;
 
 	glm::vec4 partsColors[6] = {
-		{1, 0.5, 1, 1},
-		{0.5, 0.5, 1, 1},
-		{1, 0.5, 0.5, 1},
-		{0.5, 1, 0.5, 1},
-		{0.5, 1, 1, 1},
-		{1, 1, 0.5, 1}
+		{0.85, 0.85, 0.85, 1},
+		{0.85, 0.85, 0.85, 1},
+		{0.85, 0.85, 0.85, 1},
+		{0.85, 0.85, 0.85, 1},
+		{0.85, 0.85, 0.85, 1},
+		{0.85, 0.85, 0.85, 1}
 	};
 public:
 	void virtual Draw(GLFWwindow* window, const Camera& camera);

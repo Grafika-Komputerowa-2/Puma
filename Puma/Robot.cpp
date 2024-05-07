@@ -11,13 +11,12 @@ void Robot::Draw(GLFWwindow* window, const Camera& camera)
 			glUniform4f(glGetUniformLocation(trianglesShader.ID, "COLOR"), partsColors[i].x, partsColors[i].y, partsColors[i].z, partsColors[i].w);
 			camera.SaveMatrixToShader(trianglesShader.ID);
 
-			int n = partsInfo[i].triangles.size() /
-				partsInfo[i].triangles_numberOfFloatsInDataUnit;
+			int n = partsInfo[i].triangles.size();
 			glDrawElements(GL_TRIANGLES, n, GL_UNSIGNED_INT, 0);
 		}
 		partsVAO_triangles[i].Unbind();
 	}
-
+	
 	edgesShader.Activate();
 	for (int i = 0; i < 6; i++) {
 		partsVAO_edges[i].Bind();
@@ -27,8 +26,7 @@ void Robot::Draw(GLFWwindow* window, const Camera& camera)
 			glUniform4f(glGetUniformLocation(edgesShader.ID, "COLOR"), 0, 0, 0, 1);
 			camera.SaveMatrixToShader(edgesShader.ID);
 
-			int n = partsInfo[i].vertexPositions.size() /
-				partsInfo[i].vertexPositions_numberOfFloatsInDataUnit;
+			int n = partsInfo[i].edges.size() / 2;
 			glDrawElements(GL_LINES, n, GL_UNSIGNED_INT, 0);
 		}
 		partsVAO_edges[i].Unbind();
