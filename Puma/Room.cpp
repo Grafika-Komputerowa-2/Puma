@@ -98,5 +98,34 @@ void Room::Draw(GLFWwindow* window, const Camera& camera, Light* lights, int lig
 	}
 	vao_wall.Unbind();
 
+	if(animationOn)
+		Animation();
 	robot.Draw(window, camera, lights, lightCount);
+	mirror.Draw(window, camera, lights, lightCount);
+	cylinder.Draw(window, camera, lights, lightCount);
+}
+
+void Room::Animation()
+{
+	const float size = 0.6f;
+	glm::vec3 pos = Parametryzations::circle(glfwGetTime()) * size;
+	glm::vec4 transformedPos = mirror.GetModelMtx() * glm::vec4{ pos, 1 };
+	transformedPos /= transformedPos.w;
+
+	glm::vec4 transformedNormal = mirror.GetModelMtx() * glm::vec4{ mirror.normal, 0 };
+
+	robot.inverse_kinematics(transformedPos, transformedNormal);
+
+}
+
+void Room::UserInterfers()
+{
+	ImGui::Begin("Interfers");
+	{
+		robot.UserInterfers();
+		if (ImGui::RadioButton("Animation", animationOn))
+			animationOn = !animationOn;
+
+	}
+	ImGui::End();
 }

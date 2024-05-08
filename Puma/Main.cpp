@@ -64,9 +64,8 @@ int main()
 
 		camera.Inputs(window);
 		camera.ActiveInterferes();
-
 		room.Draw(window, camera, lights, lightCount);
-		
+		room.UserInterfers();
 
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -133,8 +132,8 @@ GLFWwindow* Init() {
 	return window;
 }
 
-// PóŸniej tutaj dam resize, mam tylko problem, ¿e po risie Ÿle 
-// kursor po klikniêciu ustawia mi siê w z³ym miejscu
+// PÃ³Å¸niej tutaj dam resize, mam tylko problem, Â¿e po risie Å¸le 
+// kursor po klikniÃªciu ustawia mi siÃª w zÂ³ym miejscu
 // 
 void ResizeCallBack(GLFWwindow* window, int w, int h)
 {
