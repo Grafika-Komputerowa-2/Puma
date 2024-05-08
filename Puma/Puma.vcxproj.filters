@@ -121,7 +121,7 @@
       <Filter>Source Files\ScensObjects</Filter>
     </ClCompile>
     <ClCompile Include="Light.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\ScensObjects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -228,6 +228,9 @@
       <Filter>Header Files\ScensObjects</Filter>
     </ClInclude>
     <ClInclude Include="Cylinder.h">
+      <Filter>Header Files\ScensObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="ScensObject.h">
       <Filter>Header Files\ScensObjects</Filter>
     </ClInclude>
   </ItemGroup>

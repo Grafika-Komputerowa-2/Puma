@@ -40,7 +40,7 @@ public:
 		return vector.at(id * size + offset);
 	}
 
-	static void loadLightUniform(GLuint shaderProgram, const Light* lights, int lightCount) {
+	static void loadLightUniform(GLuint shaderProgram, const Light* lights, int lightCount, glm::mat4 trans = glm::mat4{1.0f}) {
 		for (int i = 0; i < lightCount; i++) {
 			std::string uniformName = "lights[" + std::to_string(i) + "]";
 			// Get the location of the uniform variables
@@ -49,7 +49,9 @@ public:
 			GLint diffLoc = glGetUniformLocation(shaderProgram, (uniformName + ".diffuse").c_str());
 			GLint specLoc = glGetUniformLocation(shaderProgram, (uniformName + ".specular").c_str());
 			// Set the values of the uniform variables
-			glUniform3f(posLoc, lights[i].position.x, lights[i].position.y, lights[i].position.z);
+			glm::vec4 posTmp = trans * glm::vec4(lights[i].position, 1);
+			posTmp /= posTmp.w;
+			glUniform3f(posLoc, posTmp.x, posTmp.y, posTmp.z);
 			glUniform3f(ambLoc, lights[i].ambient.x, lights[i].ambient.y, lights[i].ambient.z);
 			glUniform3f(diffLoc, lights[i].diffuse.x, lights[i].diffuse.y, lights[i].diffuse.z);
 			glUniform3f(specLoc, lights[i].specular.x, lights[i].specular.y, lights[i].specular.z);

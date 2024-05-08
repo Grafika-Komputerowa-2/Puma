@@ -15,19 +15,19 @@ Cylinder::Cylinder(float radius, float height, int sample, glm::vec3 pos, float 
     cilinder_modelMtx = trans;
 }
 
-void Cylinder::Draw(GLFWwindow* window, const Camera& camera, const Light* lights, int lightsCount)
+void Cylinder::Draw(GLFWwindow* window, const Camera& camera, const Light* lights, int lightsCount, glm::mat4 trans)
 {
     shader_cilinder.Activate();
     vao_cilinder.Bind();
     {
-        OpenGLHelper::loadLightUniform(shader_cilinder.ID, lights, lightsCount);
+        OpenGLHelper::loadLightUniform(shader_cilinder.ID, lights, lightsCount, trans);
 
         // Camera location
         GLint viewPos = glGetUniformLocation(shader_cilinder.ID, "viewPos");
         auto cameraPos = camera.GetPosition();
         glUniform3f(viewPos, cameraPos.x, cameraPos.y, cameraPos.z);
         glUniformMatrix4fv(glGetUniformLocation(shader_cilinder.ID, "MODEL_MATRIX"),
-            1, GL_FALSE, glm::value_ptr(cilinder_modelMtx));
+            1, GL_FALSE, glm::value_ptr(trans * cilinder_modelMtx));
         camera.SaveMatrixToShader(shader_cilinder.ID);
         glDrawElements(GL_TRIANGLES, numberOfIndices, GL_UNSIGNED_INT, 0);
     }

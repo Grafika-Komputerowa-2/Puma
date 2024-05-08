@@ -2,6 +2,8 @@
 #include "EBO.h"
 #include "OpenGLHelper.h"
 
+
+
 Room::Room(float width, float height, float deep)
 {
 	const float halfWidth = width * 0.5f;
@@ -77,12 +79,37 @@ Room::Room(float width, float height, float deep)
 	walls_modelMtx[5] = trans;
 }
 
-void Room::Draw(GLFWwindow* window, const Camera& camera, Light* lights, int lightCount)
+void Room::DrawAll(GLFWwindow* window, const Camera& camera, Light* lights, int lightCount)
+{
+
+	if(animationOn)
+		Animation();
+
+	for (int i = 0; i < numberOfObjects; i++) {
+		objectsToDraw[i]->Draw(window, camera, lights, lightCount);
+	}
+	/*Draw(window, camera, lights, lightCount);
+	robot.Draw(window, camera, lights, lightCount);
+	cylinder.Draw(window, camera, lights, lightCount);*/
+
+	//mirror.Draw(window, camera, lights, lightCount);
+
+	mirror.Reflect(window, camera, lights, lightCount, objectsToDraw, numberOfObjects);
+
+	//cylinder.Draw(window, camera, lights, lightCount, mirrorMtx);
+	//robot.Draw(window, camera, lights, lightCount, mirrorMtx);
+	//DrawOnlyWalls(window, camera, lights, lightCount, mirrorMtx);
+
+
+}
+
+void Room::Draw(GLFWwindow* window, const Camera& camera, const Light* lights, int lightsCount, glm::mat4 trans)
+
 {
 	shader_wall.Activate();
 	vao_wall.Bind();
 
-	OpenGLHelper::loadLightUniform(shader_wall.ID, lights, lightCount);
+	OpenGLHelper::loadLightUniform(shader_wall.ID, lights, lightsCount, trans);
 
 	// Camera location
 	GLint viewPos = glGetUniformLocation(shader_wall.ID, "viewPos");
@@ -92,17 +119,11 @@ void Room::Draw(GLFWwindow* window, const Camera& camera, Light* lights, int lig
 	for (int i = 0; i < sizeof(walls_modelMtx) / sizeof(walls_modelMtx[0]); i++) {
 
 		glUniformMatrix4fv(glGetUniformLocation(shader_wall.ID, "MODEL_MATRIX"),
-			1, GL_FALSE, glm::value_ptr(walls_modelMtx[i]));
+			1, GL_FALSE, glm::value_ptr(trans * walls_modelMtx[i]));
 		camera.SaveMatrixToShader(shader_wall.ID);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	}
 	vao_wall.Unbind();
-
-	if(animationOn)
-		Animation();
-	robot.Draw(window, camera, lights, lightCount);
-	mirror.Draw(window, camera, lights, lightCount);
-	cylinder.Draw(window, camera, lights, lightCount);
 }
 
 void Room::Animation()
