@@ -2,7 +2,7 @@
 
 void Robot::UpdateRobotPosition()
 {
-	partsModel_Mtx[0] = glm::mat4{ 1.0f };
+	//partsModel_Mtx[0] = glm::mat4{ 1.0f };
 	for (int i = 1; i < numberOfParts; i++)
 	{
 		glm::mat4 trans = glm::translate(partsModel_Mtx[i - 1], partsStartPositions[i]);
@@ -42,25 +42,25 @@ void Robot::inverse_kinematics(glm::vec3 pos, glm::vec3 normal, float& a1, float
 
 
 
-void Robot::Draw(GLFWwindow* window, const Camera& camera, const Light* lights, int lightsCount)
+void Robot::Draw(GLFWwindow* window, const Camera& camera, const Light* lights, int lightsCount, glm::mat4 trans)
 {
 	UpdateRobotPosition();
 	trianglesShader.Activate();
-
+	
 	// Camera location
 	GLint viewPos = glGetUniformLocation(trianglesShader.ID, "viewPos");
 	auto cameraPos = camera.GetPosition();
 	glUniform3f(viewPos, cameraPos.x, cameraPos.y, cameraPos.z);
 
+	OpenGLHelper::loadLightUniform(trianglesShader.ID, lights, lightsCount, trans);
+	
 	for (int i = 0; i < 6; i++) {
 		partsVAO_triangles[i].Bind(); 
 		{
 
 			glUniformMatrix4fv(glGetUniformLocation(trianglesShader.ID, "MODEL_MATRIX"),
-				1, GL_FALSE, glm::value_ptr(partsModel_Mtx[i]));
+				1, GL_FALSE, glm::value_ptr(trans * partsModel_Mtx[i]));
 			camera.SaveMatrixToShader(trianglesShader.ID);
-
-			OpenGLHelper::loadLightUniform(trianglesShader.ID, lights, lightsCount);
 
 			int n = partsInfo[i].triangles.size();
 			glDrawElements(GL_TRIANGLES, n, GL_UNSIGNED_INT, 0);

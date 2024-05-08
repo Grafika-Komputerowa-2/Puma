@@ -4,8 +4,9 @@
 #include "EBO.h"
 #include "Light.h"
 #include "OpenGLHelper.h"
+#include "ScensObject.h"
 
-class Cylinder
+class Cylinder : public ScensObject
 {
 	int numberOfIndices;
 	Shader shader_cilinder;
@@ -18,7 +19,6 @@ class Cylinder
 	glm::vec3 CylinderVertex(float teta, float t);
 public:
 	Cylinder(float radius, float height, int sample, glm::vec3 pos, float yRotation);
-	void Draw(GLFWwindow* window, const Camera& camera, const Light* lights, int lightsCount);
-
+	void virtual Draw(GLFWwindow* window, const Camera& camera, const Light* lights, int lightsCount, glm::mat4 trans = glm::mat4{ 1.0f });
 };
 

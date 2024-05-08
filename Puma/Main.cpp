@@ -64,7 +64,7 @@ int main()
 
 		camera.Inputs(window);
 		camera.ActiveInterferes();
-		room.Draw(window, camera, lights, lightCount);
+		room.DrawAll(window, camera, lights, lightCount);
 		room.UserInterfers();
 
 		ImGui::Render();
@@ -125,6 +125,7 @@ GLFWwindow* Init() {
 	ImGui_ImplOpenGL3_Init("#version 410");
 
 	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_STENCIL_TEST);
 	glEnable(GL_PROGRAM_POINT_SIZE);
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);

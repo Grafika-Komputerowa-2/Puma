@@ -7,8 +7,9 @@
 #include "EBO.h"
 #include "Light.h"
 #include "Parametryzatrons.h"
+#include "ScensObject.h"
 
-class Robot
+class Robot : public ScensObject
 {
 	const int numberOfParts = 6;
 
@@ -48,7 +49,7 @@ class Robot
 
 public:
 	Robot();
-	void virtual Draw(GLFWwindow* window, const Camera& camera, const Light* lights, int lightsCount);
+	void virtual Draw(GLFWwindow* window, const Camera& camera, const Light* lights, int lightsCount, glm::mat4 trans = glm::mat4{ 1.0f });
 	void UserInterfers();
 	void inverse_kinematics(glm::vec3 pos, glm::vec3 normal);
 
