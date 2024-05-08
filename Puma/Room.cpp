@@ -10,10 +10,10 @@ Room::Room(float width, float height, float deep)
 
 	// Location, Normal, Color
 	std::vector<float> wallVs = { 
-		-1, -1, 0, 0, 0, -1, .8f, .8f, .8f,
-		-1, +1, 0, 0, 0, -1, .8f, .2f, .8f,
-		+1, +1, 0, 0, 0, -1, .8f, .2f, .8f,
-		+1, -1, 0, 0, 0, -1, .8f, .8f, .8f
+		-1, -1, 0, 0, 0, -1, 1.0f, 0.0f, 0.0f,
+		-1, +1, 0, 0, 0, -1, 0.0f, 1.0f, 0.0f,
+		+1, +1, 0, 0, 0, -1, 0.0f, 0.0f, 1.0f,
+		+1, -1, 0, 0, 0, -1, 1.0f, 0.0f, 0.0f
 	};
 
 	std::vector<GLuint> wallIes = {
@@ -65,7 +65,7 @@ Room::Room(float width, float height, float deep)
 	trans = glm::mat4(1.0f);
 	trans = glm::translate(trans, glm::vec3(-halfWidth, 0.0, 0.0));
 	trans = glm::translate(trans, glm::vec3(0.0, startPos_y, 0.0));
-	trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0, 1.0, 0.0));
+	trans = glm::rotate(trans, glm::radians(-90.0f), glm::vec3(0.0, 1.0, 0.0));
 	trans = glm::scale(trans, glm::vec3(halfDeep, halfHeight, 1));
 	walls_modelMtx[4] = trans;
 
@@ -77,21 +77,11 @@ Room::Room(float width, float height, float deep)
 	walls_modelMtx[5] = trans;
 }
 
-void Room::Draw(GLFWwindow* window, const Camera& camera)
+void Room::Draw(GLFWwindow* window, const Camera& camera, Light* lights, int lightCount)
 {
 	shader_wall.Activate();
 	vao_wall.Bind();
 
-	const int lightCount = 1;
-	Light lights[lightCount];
-
-	Light light;
-	light.position = glm::vec3(0.0f, 0.0f, 0.0f);
-	light.ambient = glm::vec3(0.1f, 0.1f, 0.1f);
-	light.diffuse = glm::vec3(0.5f, 0.5f, 0.5f);
-	light.specular = glm::vec3(0.4f, 0.4f, 0.4f);
-
-	lights[0] = light;
 	OpenGLHelper::loadLightUniform(shader_wall.ID, lights, lightCount);
 
 	// Camera location

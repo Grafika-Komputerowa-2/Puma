@@ -165,6 +165,7 @@
     <ClCompile Include="Libraries\include\ImGui\imgui_impl_win32.cpp" />
     <ClCompile Include="Libraries\include\ImGui\imgui_tables.cpp" />
     <ClCompile Include="Libraries\include\ImGui\imgui_widgets.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mirror.cpp" />
     <ClCompile Include="Quaternion.cpp" />

@@ -28,7 +28,7 @@ class Room
 
 public:
 	Room(float wdith, float height, float deep);
-	void virtual Draw(GLFWwindow* window, const Camera& camera);
+	void virtual Draw(GLFWwindow* window, const Camera& camera, Light* lights, int lightCount);
 	void Animation();
 	void UserInterfers();
 };
