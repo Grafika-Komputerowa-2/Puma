@@ -2,10 +2,15 @@
 #include <glm/ext/vector_float3.hpp>
 #include <vector>
 #include "Light.h"
+#include <GLFW/glcorearb.h>
 
 static class OpenGLHelper {
 public:
 	static void AddVecToVector(std::vector<float>& vector, const glm::vec3& pos) {
+		vector.push_back(pos.x); vector.push_back(pos.y); vector.push_back(pos.z);
+	}
+
+	static void AddVecToVector(std::vector<GLuint>& vector, const glm::uvec3& pos) {
 		vector.push_back(pos.x); vector.push_back(pos.y); vector.push_back(pos.z);
 	}
 
