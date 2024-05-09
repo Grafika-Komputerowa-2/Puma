@@ -39,7 +39,6 @@ class Robot : public ScensObject
 	VAO partsVAO_triangles[6];
 	VAO partsVAO_edges[6];
 
-	Shader trianglesShader;
 	Shader edgesShader;
 
 	glm::vec3 robotColor = { 0.85, 0.85, 0.85 };
