@@ -95,6 +95,7 @@ void Room::DrawAll(GLFWwindow* window, const Camera& camera, Light* lights, int 
 		objectsToDraw[i]->Draw(window, camera, lights, lightCount);
 	}
 	glDisable(GL_STENCIL_TEST);
+	mirror.Draw(window, camera, lights, lightCount); // rysowanie pó³ przezroczystego lustra
 
 
 }

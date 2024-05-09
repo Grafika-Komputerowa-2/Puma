@@ -17,7 +17,6 @@ in vec3 SurfaceColor;
 out vec4 color;
 
 uniform vec3 viewPos;
-uniform vec3 overrideColor; // modyfikuje kolor lustra
 uniform float mirrorSide; // mówi czy przed lustrem czy za
 
 bool ShouldDrawOnMirror(){
@@ -51,5 +50,5 @@ void main()
         specularColor += lights[i].specular * spec;
     }
     vec3 result = ambientColor + diffuseColor + specularColor;
-    color = vec4(overrideColor * result, 1.0f);
+    color = vec4(result, 1.0f);
 }
