@@ -11,7 +11,7 @@
 #include "Camera.h"
 #include "VAO.h"
 #include "Room.h"
-#include "Robot.h"
+#include "StaticShaders.h"
 
 unsigned int width = 1600;
 unsigned int height = 1024;
@@ -50,7 +50,7 @@ int main()
 	while (!glfwWindowShouldClose(window))
 	{
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 		
 		
 
@@ -127,15 +127,14 @@ GLFWwindow* Init() {
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_STENCIL_TEST);
 	glEnable(GL_PROGRAM_POINT_SIZE);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	//glEnable(GL_BLEND);
+	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	StaticShaders::Init();
 
 	return window;
 }
 
-// PóŸniej tutaj dam resize, mam tylko problem, ¿e po risie Ÿle 
-// kursor po klikniêciu ustawia mi siê w z³ym miejscu
-// 
 void ResizeCallBack(GLFWwindow* window, int w, int h)
 {
 	width = w;

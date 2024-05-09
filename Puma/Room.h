@@ -9,7 +9,6 @@
 
 class Room: public ScensObject
 {
-	Shader shader_wall;
 	VAO vao_wall;
 	glm::mat4 walls_modelMtx[6]{};
 	glm::vec4 wall_colors[6] = { 
@@ -21,7 +20,7 @@ class Room: public ScensObject
 		{0, 0, 0.5, 1}
 	};
 
-	Cylinder cylinder{ 0.5f, 10, 20, {0, -0.5, -3}, 90 };
+	Cylinder cylinder{ 0.5f, 10, 20, {0, -0.5, -1.5f}, 90 };
 	Robot robot;
 	Mirror mirror{ 1, 2, glm::vec3{-1.5f, 0.4, 0} };
 	bool animationOn = false;

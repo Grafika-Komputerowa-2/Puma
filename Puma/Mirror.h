@@ -10,7 +10,7 @@
 
 class Mirror : public ScensObject
 {
-	Shader shader_mirror;
+	Shader shader_reflectionWord;
 	VAO vao_mirror;
 	glm::mat4 mirror_modelMtx{ 1.0f };
 	glm::vec3 mirror_color{ 1, 0.5, 0.5 };

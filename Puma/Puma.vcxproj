@@ -174,7 +174,9 @@
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="Rotation.cpp" />
     <ClCompile Include="Scale.cpp" />
+    <ClCompile Include="ScensObject.cpp" />
     <ClCompile Include="shaderClass.cpp" />
+    <ClCompile Include="StaticShaders.cpp" />
     <ClCompile Include="Transpose.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -210,12 +212,15 @@
     <ClInclude Include="ScaleImGui.h" />
     <ClInclude Include="ScensObject.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="StaticShaders.h" />
     <ClInclude Include="TransposeImGui.h" />
     <ClInclude Include="Transpose.h" />
     <ClInclude Include="VAO.h" />
     <ClInclude Include="VBO.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="reflectionWordPhong_frag.glsl" />
+    <None Include="reflectionWordPhong_vert.glsl" />
     <None Include="phong_frag.glsl" />
     <None Include="phong_vert.glsl" />
     <None Include="simple_frag.glsl" />

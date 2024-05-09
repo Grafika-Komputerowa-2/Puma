@@ -123,6 +123,12 @@
     <ClCompile Include="Light.cpp">
       <Filter>Source Files\ScensObjects</Filter>
     </ClCompile>
+    <ClCompile Include="StaticShaders.cpp">
+      <Filter>Source Files\ShaderManadement</Filter>
+    </ClCompile>
+    <ClCompile Include="ScensObject.cpp">
+      <Filter>Source Files\ScensObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -233,6 +239,9 @@
     <ClInclude Include="ScensObject.h">
       <Filter>Header Files\ScensObjects</Filter>
     </ClInclude>
+    <ClInclude Include="StaticShaders.h">
+      <Filter>Header Files\ShaderManadement</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="default.vert">
@@ -258,6 +267,12 @@
     </None>
     <None Include="vertexAndNormals_frag.glsl">
       <Filter>Resource Files\Shaders\VertexAndNormal</Filter>
+    </None>
+    <None Include="reflectionWordPhong_frag.glsl">
+      <Filter>Resource Files\Shaders\lightings</Filter>
+    </None>
+    <None Include="reflectionWordPhong_vert.glsl">
+      <Filter>Resource Files\Shaders\lightings</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
