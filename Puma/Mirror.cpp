@@ -107,15 +107,13 @@ void Mirror::Reflect(GLFWwindow* window, const Camera& camera, const Light* ligh
 
 	glUniformMatrix4fv(glGetUniformLocation(shader_reflectionWord.ID, "reflectPlaneModelMtx_invers"),
 		1, GL_FALSE, glm::value_ptr(glm::inverse(mirror_modelMtx)));
-	auto overrideColorId = glGetUniformLocation(shader_reflectionWord.ID, "overrideColor");
-
-	glUniform3f(overrideColorId, 0.7f, 0.7f, 0.7f);
+	
 
 	for (int i = 0; i < n; i++) {
 		Shader oldShader = sc[i]->SwapShaders(shader_reflectionWord);
 		sc[i]->Draw(window, camera, lights, lightsCount, reflectionMtx);
 		sc[i]->SwapShaders(oldShader);
 	}
-	glUniform3f(overrideColorId, 1.0f, 1.0f, 1.0f);
+
 	glDisable(GL_STENCIL_TEST);
 }
