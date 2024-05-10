@@ -97,7 +97,11 @@ void Room::DrawAll(GLFWwindow* window, const Camera& camera, Light* lights, int 
 	glDisable(GL_STENCIL_TEST);
 	mirror.Draw(window, camera, lights, lightCount); // rysowanie pó³ przezroczystego lustra
 
-
+	glDepthMask(GL_FALSE);
+	if (animationOn) {
+		sparkGenerator.Draw(window, camera, lights, lightCount);
+	}
+	glDepthMask(GL_TRUE);
 }
 
 void Room::Draw(GLFWwindow* window, const Camera& camera, const Light* lights, int lightsCount, glm::mat4 trans)
@@ -137,6 +141,9 @@ void Room::Animation()
 
 	robot.inverse_kinematics(transformedPos, transformedNormal);
 
+	float scalar = glfwGetTime() - lastTime;
+	sparkGenerator.Update(scalar, transformedPos, glm::vec3{ 0, -3, 0 });
+	lastTime = glfwGetTime();
 }
 
 void Room::UserInterfers()

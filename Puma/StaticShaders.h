@@ -7,6 +7,7 @@
 static struct StaticShaders{
 	static void Init(); // u¿yj przed u¿yciem shaderów
 
+	static Shader GetSimpleShader();
 	static Shader GetPhongShader();
 	static Shader GetDefaultShader();
 	static Shader GetReflectionWorldPhongShader();
@@ -15,7 +16,7 @@ static struct StaticShaders{
 
 private:
 	static bool haseBeenInit;
-		   
+	static Shader simpleShader;
 	static Shader defaultShader;
 	static Shader phongShader;
 	static Shader reflectionWorldPhongShader;

@@ -168,6 +168,7 @@
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Mirror.cpp" />
+    <ClCompile Include="particionGeneration.cpp" />
     <ClCompile Include="Quaternion.cpp" />
     <ClCompile Include="QuaternionRotationImGui.cpp" />
     <ClCompile Include="Robot.cpp" />
@@ -176,6 +177,7 @@
     <ClCompile Include="Scale.cpp" />
     <ClCompile Include="ScensObject.cpp" />
     <ClCompile Include="shaderClass.cpp" />
+    <ClCompile Include="Spark.cpp" />
     <ClCompile Include="StaticShaders.cpp" />
     <ClCompile Include="Transpose.cpp" />
   </ItemGroup>
@@ -200,6 +202,7 @@
     <ClInclude Include="Mirror.h" />
     <ClInclude Include="OpenGLHelper.h" />
     <ClInclude Include="Parametryzatrons.h" />
+    <ClInclude Include="particionGeneration.h" />
     <ClInclude Include="Quaternion.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="RobotsPartInfo.h" />
@@ -212,6 +215,7 @@
     <ClInclude Include="ScaleImGui.h" />
     <ClInclude Include="ScensObject.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="Spark.h" />
     <ClInclude Include="StaticShaders.h" />
     <ClInclude Include="TransposeImGui.h" />
     <ClInclude Include="Transpose.h" />
