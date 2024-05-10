@@ -12,10 +12,10 @@ Room::Room(float width, float height, float deep)
 
 	// Location, Normal, Color
 	std::vector<float> wallVs = { 
-		-1, -1, 0, 0, 0, -1, 1.0f, 0.0f, 0.0f,
-		-1, +1, 0, 0, 0, -1, 0.0f, 1.0f, 0.0f,
-		+1, +1, 0, 0, 0, -1, 0.0f, 0.0f, 1.0f,
-		+1, -1, 0, 0, 0, -1, 1.0f, 0.0f, 0.0f
+		-1, -1, 0, 0, 0, -1, 0.66f, 0.70f, 0.21f,
+		-1, +1, 0, 0, 0, -1, 0.66f, 0.70f, 0.21f,
+		+1, +1, 0, 0, 0, -1, 0.66f, 0.70f, 0.21f,
+		+1, -1, 0, 0, 0, -1, 0.66f, 0.70f, 0.21f,
 	};
 
 	std::vector<GLuint> wallIes = {
@@ -99,7 +99,7 @@ void Room::DrawAll(GLFWwindow* window, const Camera& camera, Light* lights, int 
 	//cylinder.Draw(window, camera, lights, lightCount, mirrorMtx);
 	//robot.Draw(window, camera, lights, lightCount, mirrorMtx);
 	//DrawOnlyWalls(window, camera, lights, lightCount, mirrorMtx);
-
+	
 
 }
 
@@ -108,6 +108,9 @@ void Room::Draw(GLFWwindow* window, const Camera& camera, const Light* lights, i
 {
 	shader_wall.Activate();
 	vao_wall.Bind();
+
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_FRONT);
 
 	OpenGLHelper::loadLightUniform(shader_wall.ID, lights, lightsCount, trans);
 
@@ -124,6 +127,8 @@ void Room::Draw(GLFWwindow* window, const Camera& camera, const Light* lights, i
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	}
 	vao_wall.Unbind();
+
+	glDisable(GL_CULL_FACE);
 }
 
 void Room::Animation()

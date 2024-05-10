@@ -38,10 +38,10 @@ int main()
 	float startPos_y = height * 0.5f - 1.0f;
 
 	Light light;
-	light.position = glm::vec3(0.0f, startPos_y, 0.0f);
+	light.position = glm::vec3(0.0f, startPos_y + 8.0f, -width*0.5f - 5.0f);
 	light.ambient = glm::vec3(0.1f, 0.1f, 0.1f);
-	light.diffuse = glm::vec3(0.5f, 0.5f, 0.5f);
-	light.specular = glm::vec3(0.4f, 0.4f, 0.4f);
+	light.diffuse = glm::vec3(1.0f, 1.0f, 1.0f);
+	light.specular = glm::vec3(0.5f, 0.5f, 0.5f);
 
 	lights[0] = light;
 

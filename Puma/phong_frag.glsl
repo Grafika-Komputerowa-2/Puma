@@ -20,18 +20,20 @@ void main()
     for (int i = 0; i < numLights; i++)
     {
         // Ambient
-        ambientColor += lights[i].ambient * SurfaceColor;
+        ambientColor += lights[i].ambient;
+
         // Diffuse
         vec3 norm = normalize(Normal);
         vec3 lightDir = normalize(lights[i].position - FragPos);
         float diff = max(dot(norm, lightDir), 0.0);
-        diffuseColor += lights[i].diffuse * diff * SurfaceColor;
+        diffuseColor += lights[i].diffuse * diff;
+
         // Specular
         vec3 viewDir = normalize(viewPos - FragPos);
         vec3 reflectDir = reflect(-lightDir, norm);
         float spec = pow(max(dot(viewDir, reflectDir), 0.0), 32);
         specularColor += lights[i].specular * spec;
     }
-    vec3 result = ambientColor + diffuseColor + specularColor;
+    vec3 result = (ambientColor + diffuseColor + specularColor) * SurfaceColor;
     color = vec4(result, 1.0f);
 }
