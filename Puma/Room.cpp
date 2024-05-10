@@ -111,8 +111,6 @@ void Room::Draw(GLFWwindow* window, const Camera& camera, const Light* lights, i
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_FRONT);
 
-	OpenGLHelper::loadLightUniform(shader_wall.ID, lights, lightsCount, trans);
-
 	// Camera location
 	GLint viewPos = glGetUniformLocation(shader.ID, "viewPos");
 	auto cameraPos = camera.GetPosition();
