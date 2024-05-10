@@ -9,7 +9,6 @@
 class Cylinder : public ScensObject
 {
 	int numberOfIndices;
-	Shader shader_cilinder;
 	VAO vao_cilinder;
 	glm::mat4 cilinder_modelMtx{ 1.0f };
 	glm::vec3 color{ 0.5, 0.5, 1 };

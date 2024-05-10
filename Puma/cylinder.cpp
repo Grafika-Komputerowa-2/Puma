@@ -17,18 +17,18 @@ Cylinder::Cylinder(float radius, float height, int sample, glm::vec3 pos, float 
 
 void Cylinder::Draw(GLFWwindow* window, const Camera& camera, const Light* lights, int lightsCount, glm::mat4 trans)
 {
-    shader_cilinder.Activate();
+    shader.Activate();
     vao_cilinder.Bind();
     {
-        OpenGLHelper::loadLightUniform(shader_cilinder.ID, lights, lightsCount, trans);
-
+        OpenGLHelper::loadLightUniform(shader.ID, lights, lightsCount, trans);
+        glUniform1f(glGetUniformLocation(shader.ID, "alfa"), alfa);
         // Camera location
-        GLint viewPos = glGetUniformLocation(shader_cilinder.ID, "viewPos");
+        GLint viewPos = glGetUniformLocation(shader.ID, "viewPos");
         auto cameraPos = camera.GetPosition();
         glUniform3f(viewPos, cameraPos.x, cameraPos.y, cameraPos.z);
-        glUniformMatrix4fv(glGetUniformLocation(shader_cilinder.ID, "MODEL_MATRIX"),
+        glUniformMatrix4fv(glGetUniformLocation(shader.ID, "MODEL_MATRIX"),
             1, GL_FALSE, glm::value_ptr(trans * cilinder_modelMtx));
-        camera.SaveMatrixToShader(shader_cilinder.ID);
+        camera.SaveMatrixToShader(shader.ID);
         glDrawElements(GL_TRIANGLES, numberOfIndices, GL_UNSIGNED_INT, 0);
     }
     vao_cilinder.Unbind();
@@ -172,5 +172,5 @@ void Cylinder::BuildVerticesSmooth(float sectorCount)
 
     vao_cilinder.Unbind(); vbo.Unbind(); ebo.Unbind();
 
-    shader_cilinder = { "phong_vert.glsl", "phong_frag.glsl" };
+    shader = StaticShaders::GetPhongShader();
 }

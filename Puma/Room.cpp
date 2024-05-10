@@ -33,7 +33,7 @@ Room::Room(float width, float height, float deep)
 
 	vao_wall.Unbind(); vbo.Unbind(); ebo.Unbind();
 
-	shader_wall = { "phong_vert.glsl", "phong_frag.glsl" };
+	shader = StaticShaders::GetPhongShader();
 
 	float startPos_y = halfHeight - 1;
 	glm::mat4 trans = glm::mat4(1.0f);
@@ -85,45 +85,44 @@ void Room::DrawAll(GLFWwindow* window, const Camera& camera, Light* lights, int 
 	if(animationOn)
 		Animation();
 
+
+	mirror.Reflect(window, camera, lights, lightCount, objectsToDraw, numberOfObjects);
+	glEnable(GL_STENCIL_TEST);
+	glStencilFunc(GL_NOTEQUAL, 1, 0xFF); // Pass test if stencil value is 1
+	glStencilMask(0x00); // Don't write anything to stencil buffer
+	glDepthMask(GL_TRUE); // Write to depth buffer
 	for (int i = 0; i < numberOfObjects; i++) {
 		objectsToDraw[i]->Draw(window, camera, lights, lightCount);
 	}
-	/*Draw(window, camera, lights, lightCount);
-	robot.Draw(window, camera, lights, lightCount);
-	cylinder.Draw(window, camera, lights, lightCount);*/
+	glDisable(GL_STENCIL_TEST);
+	mirror.Draw(window, camera, lights, lightCount); // rysowanie pó³ przezroczystego lustra
 
-	//mirror.Draw(window, camera, lights, lightCount);
-
-	mirror.Reflect(window, camera, lights, lightCount, objectsToDraw, numberOfObjects);
-
-	//cylinder.Draw(window, camera, lights, lightCount, mirrorMtx);
-	//robot.Draw(window, camera, lights, lightCount, mirrorMtx);
-	//DrawOnlyWalls(window, camera, lights, lightCount, mirrorMtx);
-	
 
 }
 
 void Room::Draw(GLFWwindow* window, const Camera& camera, const Light* lights, int lightsCount, glm::mat4 trans)
 
 {
-	shader_wall.Activate();
+	shader.Activate();
 	vao_wall.Bind();
 
+	OpenGLHelper::loadLightUniform(shader.ID, lights, lightsCount, trans);
+	glUniform1f(glGetUniformLocation(shader.ID, "alfa"), alfa);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_FRONT);
 
 	OpenGLHelper::loadLightUniform(shader_wall.ID, lights, lightsCount, trans);
 
 	// Camera location
-	GLint viewPos = glGetUniformLocation(shader_wall.ID, "viewPos");
+	GLint viewPos = glGetUniformLocation(shader.ID, "viewPos");
 	auto cameraPos = camera.GetPosition();
 	glUniform3f(viewPos, cameraPos.x, cameraPos.y, cameraPos.z);
 
 	for (int i = 0; i < sizeof(walls_modelMtx) / sizeof(walls_modelMtx[0]); i++) {
 
-		glUniformMatrix4fv(glGetUniformLocation(shader_wall.ID, "MODEL_MATRIX"),
+		glUniformMatrix4fv(glGetUniformLocation(shader.ID, "MODEL_MATRIX"),
 			1, GL_FALSE, glm::value_ptr(trans * walls_modelMtx[i]));
-		camera.SaveMatrixToShader(shader_wall.ID);
+		camera.SaveMatrixToShader(shader.ID);
 		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 	}
 	vao_wall.Unbind();

@@ -45,22 +45,23 @@ void Robot::inverse_kinematics(glm::vec3 pos, glm::vec3 normal, float& a1, float
 void Robot::Draw(GLFWwindow* window, const Camera& camera, const Light* lights, int lightsCount, glm::mat4 trans)
 {
 	UpdateRobotPosition();
-	trianglesShader.Activate();
+	shader.Activate();
 	
 	// Camera location
-	GLint viewPos = glGetUniformLocation(trianglesShader.ID, "viewPos");
+	GLint viewPos = glGetUniformLocation(shader.ID, "viewPos");
 	auto cameraPos = camera.GetPosition();
 	glUniform3f(viewPos, cameraPos.x, cameraPos.y, cameraPos.z);
+	glUniform1f(glGetUniformLocation(shader.ID, "alfa"), alfa);
 
-	OpenGLHelper::loadLightUniform(trianglesShader.ID, lights, lightsCount, trans);
+	OpenGLHelper::loadLightUniform(shader.ID, lights, lightsCount, trans);
 	
 	for (int i = 0; i < 6; i++) {
 		partsVAO_triangles[i].Bind(); 
 		{
 
-			glUniformMatrix4fv(glGetUniformLocation(trianglesShader.ID, "MODEL_MATRIX"),
+			glUniformMatrix4fv(glGetUniformLocation(shader.ID, "MODEL_MATRIX"),
 				1, GL_FALSE, glm::value_ptr(trans * partsModel_Mtx[i]));
-			camera.SaveMatrixToShader(trianglesShader.ID);
+			camera.SaveMatrixToShader(shader.ID);
 
 			int n = partsInfo[i].triangles.size();
 			glDrawElements(GL_TRIANGLES, n, GL_UNSIGNED_INT, 0);
@@ -176,6 +177,6 @@ Robot::Robot()
 		//}
 	}
 
-	trianglesShader = { "phong_vert.glsl", "phong_frag.glsl" };
-	edgesShader = { "simple_vert.glsl", "simple_frag.glsl" };
+	shader = StaticShaders::GetPhongShader();
+	edgesShader = StaticShaders::GetDefaultShader();
 }
