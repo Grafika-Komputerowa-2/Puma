@@ -12,10 +12,10 @@ Room::Room(float width, float height, float deep)
 
 	// Location, Normal, Color
 	std::vector<float> wallVs = { 
-		-1, -1, 0, 0, 0, -1, 1.0f, 0.0f, 0.0f,
-		-1, +1, 0, 0, 0, -1, 0.0f, 1.0f, 0.0f,
-		+1, +1, 0, 0, 0, -1, 0.0f, 0.0f, 1.0f,
-		+1, -1, 0, 0, 0, -1, 1.0f, 0.0f, 0.0f
+		-1, -1, 0, 0, 0, -1, 0.66f, 0.70f, 0.21f,
+		-1, +1, 0, 0, 0, -1, 0.66f, 0.70f, 0.21f,
+		+1, +1, 0, 0, 0, -1, 0.66f, 0.70f, 0.21f,
+		+1, -1, 0, 0, 0, -1, 0.66f, 0.70f, 0.21f,
 	};
 
 	std::vector<GLuint> wallIes = {
@@ -112,6 +112,8 @@ void Room::Draw(GLFWwindow* window, const Camera& camera, const Light* lights, i
 
 	OpenGLHelper::loadLightUniform(shader.ID, lights, lightsCount, trans);
 	glUniform1f(glGetUniformLocation(shader.ID, "alfa"), alfa);
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_FRONT);
 
 	// Camera location
 	GLint viewPos = glGetUniformLocation(shader.ID, "viewPos");
@@ -127,7 +129,7 @@ void Room::Draw(GLFWwindow* window, const Camera& camera, const Light* lights, i
 	}
 	vao_wall.Unbind();
 
-	
+	glDisable(GL_CULL_FACE);
 }
 
 void Room::Animation()
