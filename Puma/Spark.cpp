@@ -12,25 +12,26 @@ void Spark::Reset()
 Spark::Spark()
 {
 	shader = StaticShaders::GetSimpleShader();
-	std::vector<float> vs{};
-	std::vector<GLuint> ids{};
+	//std::vector<float> vs{};
+	//std::vector<GLuint> ids{};
 
-	glm::vec3 startPos = { 2, 2, 2 };
-	OpenGLHelper::AddVecToVector(vs, startPos);
-	glm::vec3 sum{ 0, 0, 0 };
-	for (int i = 1; i < 1001; i++)
-	{
-		glm::vec3 tmp = RandomStartDirection();
-		sum += tmp;
-		OpenGLHelper::AddVecToVector(vs, startPos + tmp * 2.0f);
-		ids.push_back(0);
-		ids.push_back(i);
-	}
-	sum /= 1000;
+	//glm::vec3 startPos = { 2, 2, 2 };
+	//OpenGLHelper::AddVecToVector(vs, startPos);
+	//glm::vec3 sum{ 0, 0, 0 };
+	//for (int i = 1; i < 1001; i++)
+	//{
+	//	glm::vec3 tmp = RandomStartDirection();
+	//	sum += tmp;
+	//	OpenGLHelper::AddVecToVector(vs, startPos + tmp * 2.0f);
+	//	ids.push_back(0);
+	//	ids.push_back(i);
+	//}
+	//sum /= 1000;
 
 
 
 	Reset();
+	UpdatePos(0);
 }
 
 glm::vec3 Spark::RandomStartDirection()
