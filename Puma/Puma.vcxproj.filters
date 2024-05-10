@@ -129,6 +129,9 @@
     <ClCompile Include="ScensObject.cpp">
       <Filter>Source Files\ScensObjects</Filter>
     </ClCompile>
+    <ClCompile Include="Spark.cpp">
+      <Filter>Source Files\ScensObjects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h">
@@ -241,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="StaticShaders.h">
       <Filter>Header Files\ShaderManadement</Filter>
+    </ClInclude>
+    <ClInclude Include="Spark.h">
+      <Filter>Header Files\ScensObjects</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

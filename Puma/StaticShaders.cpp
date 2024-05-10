@@ -2,10 +2,15 @@
 
 bool StaticShaders::haseBeenInit = false;
 
+Shader StaticShaders::simpleShader;
 Shader StaticShaders::defaultShader;
 Shader StaticShaders::phongShader;
 Shader StaticShaders::reflectionWorldPhongShader;
 ;
+
+Shader StaticShaders::GetSimpleShader() {
+	return simpleShader;
+}
 
 Shader StaticShaders::GetDefaultShader() {
 	return defaultShader;
@@ -46,6 +51,7 @@ void StaticShaders::Init()
 		return;
 	haseBeenInit = true;
 
+	simpleShader = { "simple_vert.glsl", "simple_frag.glsl" };
 	defaultShader = { "default.vert", "default.frag" };
 	phongShader = { "phong_vert.glsl", "phong_frag.glsl" };
 	reflectionWorldPhongShader = { "reflectionWordPhong_vert.glsl", "reflectionWordPhong_frag.glsl" };
